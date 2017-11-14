@@ -20,17 +20,25 @@ public class Launcher {
         password.sendKeys("Xcg7299bnSmMuRLp9ITw");
         WebElement button=driver.findElement(By.name("submitLogin"));
         button.click();
-        WebDriver.Options options=driver.manage();
-        driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);
-        WebElement pictogram=driver.findElement(By.linkText("http://profile.prestashop.com/webinar.test%40gmail.com.jpg"));
-        Actions actions=new Actions(driver);
-        actions.moveToElement(pictogram);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement pictogram=driver.findElement(By.className("employee_avatar_small"));
         pictogram.click();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         WebElement exit=driver.findElement(By.id("header_logout"));
         exit.click();
+        driver.quit();
     }
     public static WebDriver initChromeDriver(){
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/drivers/chromedriver");
         return new ChromeDriver ();
     }
 }
+
