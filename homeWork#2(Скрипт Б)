@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ScriptB {
-    public static void main (String[] args) throws InterruptedException {
+    public static void main (String[] args) {
 
         WebDriver driver = initChromeDriver();
         driver.get("http://prestashop-automation.qatestlab.com.ua/admin147ajyvk0/");
@@ -14,7 +14,11 @@ public class ScriptB {
         password.sendKeys("Xcg7299bnSmMuRLp9ITw");
         WebElement button=driver.findElement(By.name("submitLogin"));
         button.click();
-        Thread.sleep(5000);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String [] menuNames=new String[]{"Заказы","Dashboard","Каталог","Клиенты","Служба поддержки","Статистика","Modules","Design","Доставка"};
         for (int i=0;i<menuNames.length;i++){
         WebElement element=driver.findElement(By.linkText(menuNames[i]));
@@ -29,6 +33,7 @@ public class ScriptB {
                 System.out.println("ошибка!раздел поменялся!");
             }
         }
+        driver.quit();
 
 
     }
@@ -37,3 +42,4 @@ public class ScriptB {
         return new ChromeDriver();
     }
 }
+
